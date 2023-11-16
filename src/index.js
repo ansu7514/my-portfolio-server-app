@@ -1,11 +1,9 @@
 const exrpess = require("express");
 const cors = require("cors");
-const mysql = require("mysql");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 
-const dbConfig = require("./config/dbConfig.js");
-const conn = dbConfig.init();
+const { mySqlConnect } = require("./util/mySqlUtil");
 
 dotenv.config();
 
@@ -39,5 +37,5 @@ app.get("/", (req, res) => {
 
 app.listen(app.get("port"), () => {
   console.log(`server started on `, app.get("port"));
-  dbConfig.connect(conn);
+  mySqlConnect();
 });

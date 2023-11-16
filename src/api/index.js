@@ -2,11 +2,8 @@ const { Router } = require("express");
 
 const api = Router();
 
-api.get("/", (req, res) => {
-  console.log("success");
-  res.json("success");
+const userRouter = require("./user");
 
-  res.end();
-});
+api.use("/user", userRouter);
 
 module.exports = api;
