@@ -44,3 +44,18 @@ exports.check = async ({ id }) => {
 
   return count;
 };
+
+exports.login = async ({ id, pw }) => {
+  const sql = `
+		SELECT *
+		FROM user
+		WHERE user_id = '${id}'
+	`;
+  console.log(sql);
+
+  const [data] = await run(sql);
+  const loginCheck = bcrypt.compareSync(pw, data.password);
+
+  if (loginCheck) return data;
+  else throw "Password error";
+};
