@@ -29,13 +29,13 @@ app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
   res.send(`
-        <div>
-            <h2>my-portfolio-server-app<h2/>
-        </div>
-    `);
+    <div>
+      <h2>my-portfolio-server-app<h2/>
+    </div>
+	`);
 });
 
 app.listen(app.get("port"), () => {
-  console.log(`server started on `, app.get("port"));
+  console.log(`server started on`, app.get("port"));
   mySqlConnect();
 });

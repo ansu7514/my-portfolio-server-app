@@ -8,7 +8,7 @@ const hashedPassword = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 
-exports.createUser = async (userData) => {
+exports.create = async (userData) => {
   const { id, pw } = userData;
 
   const password = await hashedPassword(pw);
@@ -29,4 +29,18 @@ exports.createUser = async (userData) => {
     console.error(e);
     return e;
   }
+};
+
+exports.check = async ({ id }) => {
+  const sql = `
+		SELECT COUNT(*) as count
+		FROM user
+		WHERE user_id = '${id}'
+	`;
+  console.log(sql);
+
+  const [data] = await run(sql);
+  const { count } = data;
+
+  return count;
 };

@@ -16,8 +16,8 @@ const mySqlConnect = () => {
 
   client.connect(async (err) => {
     if (err) {
-      console.error(err);
-      console.log("mySql connect fail!");
+        console.error(err);
+        console.log("mySql connect fail!");
 
       console.log("mySql reconnect...");
       setTimeout(mySqlConnect, 3000);
@@ -27,11 +27,18 @@ const mySqlConnect = () => {
   });
 };
 
-const run = async (sql) => {
-  const result = await client.query(sql);
-  const { rows } = result;
-
-  return rows;
+const run = (sql) => {
+  return new Promise((resolve, reject) => {
+    client.query(sql, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        const jsonData = JSON.parse(JSON.stringify(rows));
+        console.log(jsonData);
+        resolve(jsonData);
+      }
+    });
+  });
 };
 
 exports.client = client;
