@@ -54,6 +54,10 @@ exports.uploadController = (req, res, next) => {
         res.status(500).send(err.message);
       } else {
         console.log("UPLOAD COMPLETE!");
+
+        if (UPLOAD_PATH_TYPE === 'LOCAL')
+          req.file.path = req.file.path.replace(/\\/g, '/');
+
         console.log(req.body);
         console.log(req.file);
         next();

@@ -8,6 +8,22 @@ const hashedPassword = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 
+exports.user = async (userId) => {
+  const user_id = userId.replace(':', '');
+
+  const sql = `
+    SELECT
+      name, email, phone, birth,
+      address, job, image, image_path
+    FROM user
+    WHERE user_id = '${user_id}'
+  `;
+  console.log(sql);
+
+  const [data] = await run(sql);
+  return data;
+};
+
 exports.create = async (userData) => {
   const { user_id, password } = userData;
 
@@ -64,14 +80,15 @@ exports.update = async (req) => {
   const { body, file } = req;
 
   const { user_id, name, email, phone, birth, address } = body;
-  const { path } = file;
+  const { originalname, path } = file;
 
   const sql = `
 		UPDATE user
 		SET
       name = '${name}', email = '${email}',
       phone = '${phone}', birth = '${birth}',
-      address = '${address}', image_path = '${path}'
+      address = '${address}',
+      image = '${originalname}', image_path = '${path}'
 		WHERE user_id = '${user_id}'
 	`;
   console.log(sql);
