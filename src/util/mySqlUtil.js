@@ -34,7 +34,6 @@ const run = (sql) => {
         reject(err);
       } else {
         const jsonData = JSON.parse(JSON.stringify(rows));
-        console.log(jsonData);
         resolve(jsonData);
       }
     });
