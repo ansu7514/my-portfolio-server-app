@@ -43,11 +43,30 @@ exports.check = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    let success = false;
+  let success = false;
   let data;
 
   try {
     data = await userService.login(req.body);
+    success = true;
+
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+    data = error;
+
+    res.status(500).send("Interval Server Error");
+  }
+
+  res.send({ success, data });
+};
+
+exports.update = async (req, res) => {
+  let success = false;
+  let data;
+
+  try {
+    data = await userService.update(req);
     success = true;
 
     res.status(200);
