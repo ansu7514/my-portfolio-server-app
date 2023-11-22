@@ -9,7 +9,7 @@ const hashedPassword = async (password) => {
 };
 
 exports.user = async (userId) => {
-  const user_id = userId.replace(':', '');
+  const user_id = userId.replace(":", "");
 
   const sql = `
     SELECT
@@ -80,15 +80,20 @@ exports.update = async (req) => {
   const { body, file } = req;
 
   const { user_id, name, email, phone, birth, address } = body;
-  const { originalname, path } = file;
+
+  let value = "";
+  if (file) {
+    const { originalname, path } = file;
+    value = `, image = '${originalname}', image_path = '${path}'`;
+  }
 
   const sql = `
 		UPDATE user
 		SET
       name = '${name}', email = '${email}',
       phone = '${phone}', birth = '${birth}',
-      address = '${address}',
-      image = '${originalname}', image_path = '${path}'
+      address = '${address}'
+      ${value}
 		WHERE user_id = '${user_id}'
 	`;
   console.log(sql);
