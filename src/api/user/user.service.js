@@ -79,7 +79,7 @@ exports.login = async ({ user_id, password }) => {
 exports.update = async (req) => {
   const { body, file } = req;
 
-  const { user_id, name, email, phone, birth, address } = body;
+  const { user_id, name, email, phone, job, birth, address } = body;
 
   let value = "";
   if (file) {
@@ -91,8 +91,8 @@ exports.update = async (req) => {
 		UPDATE user
 		SET
       name = '${name}', email = '${email}',
-      phone = '${phone}', birth = '${birth}',
-      address = '${address}'
+      phone = '${phone}', job = '${job}',
+      birth = '${birth}', address = '${address}'
       ${value}
 		WHERE user_id = '${user_id}'
 	`;
