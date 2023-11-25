@@ -65,7 +65,7 @@ exports.login = async ({ user_id, password }) => {
   const sql = `
 		SELECT *
 		FROM user
-		WHERE user_id = '${user_id}'
+		WHERE BINARY(user_id) = '${user_id}'
 	`;
   console.log(sql);
 
