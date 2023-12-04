@@ -2,12 +2,14 @@ const { Router } = require("express");
 
 const api = Router();
 
-const userRouter = require("./user");
 const aboutmeRouter = require("./aboutme");
 const fileRouter = require("./file");
+const openapiRouter = require("./openapi");
+const userRouter = require("./user");
 
-api.use("/user", userRouter);
 api.use("/aboutme", aboutmeRouter);
 api.use("/file", fileRouter);
+api.use("/openapi", openapiRouter);
+api.use("/user", userRouter);
 
 module.exports = api;
