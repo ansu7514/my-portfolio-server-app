@@ -6,10 +6,10 @@ exports.openapiRoot = async (req, res) => {
 };
 
 exports.school = async (req, res) => {
-  const { SCHUL_NM } = req.body;
+  const { SCHUL_NM, SCHUL_KND_SC_NM } = req.body;
 
   const response = await axios.get(
-    `${SCHOOL_INFO_API}?SCHUL_NM=${SCHUL_NM}&TYPE=json&KEY=${process.env.SCHOOL_API_KEY}`
+    `${SCHOOL_INFO_API}?SCHUL_NM=${SCHUL_NM}&SCHUL_KND_SC_NM=${SCHUL_KND_SC_NM}&TYPE=json&KEY=${process.env.SCHOOL_API_KEY}`
   );
 
   if (response.status === 200) {
