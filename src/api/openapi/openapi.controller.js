@@ -6,14 +6,14 @@ exports.openapiRoot = async (req, res) => {
 };
 
 exports.school = async (req, res) => {
-  const { SCHUL_NM, SCHUL_KND_SC_NM } = req.body;
+  const { gubun, searchSchulNm } = req.body;
 
   const response = await axios.get(
-    `${SCHOOL_INFO_API}?SCHUL_NM=${SCHUL_NM}&SCHUL_KND_SC_NM=${SCHUL_KND_SC_NM}&TYPE=json&KEY=${process.env.SCHOOL_API_KEY}`
+    `${SCHOOL_INFO_API}&svcType=api&svcCode=SCHOOL&contentType=json&gubun=${gubun}&searchSchulNm=${searchSchulNm}`
   );
 
   if (response.status === 200) {
-    const data = response.data.schoolInfo;
+    const data = response.data.dataSearch.content;
     console.log(data);
 
     res.status(200);

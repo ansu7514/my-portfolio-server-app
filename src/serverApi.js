@@ -1,1 +1,1 @@
-exports.SCHOOL_INFO_API = `https://open.neis.go.kr/hub/schoolInfo`;
+exports.SCHOOL_INFO_API = `http://www.career.go.kr/cnet/openapi/getOpenApi?apiKey=${process.env.SCHOOL_API_KEY}`;
