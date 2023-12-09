@@ -4,10 +4,10 @@ exports.user = async (userId) => {
   const user_id = userId.replace(":", "");
 
   const checkSql = `
-      SELECT *
-      FROM about_me
-      WHERE user_id = '${user_id}'
-    `;
+    SELECT *
+    FROM about_me
+    WHERE user_id = '${user_id}'
+  `;
   console.log(checkSql);
 
   const checkData = await run(checkSql);

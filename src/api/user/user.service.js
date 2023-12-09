@@ -31,9 +31,9 @@ exports.create = async (userData) => {
 
   const sql = `
     INSERT INTO user (
-        user_id, password
+      user_id, password
     ) VALUE (
-        '${user_id}', '${hashPassword}'
+      '${user_id}', '${hashPassword}'
     )
   `;
   console.log(sql);
