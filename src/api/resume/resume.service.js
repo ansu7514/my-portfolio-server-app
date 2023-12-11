@@ -49,6 +49,23 @@ exports.educationCreate = async (insertData) => {
   }
 };
 
+exports.educationDelete = async ({ user_id, school_id }) => {
+  const sql = `
+    DELETE
+    FROM resume_education
+    WHERE user_id = '${user_id}' AND school_id = '${school_id}'
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
+    console.error(e);
+    return e;
+  }
+};
+
 exports.experienceUser = async (userId) => {
   const user_id = userId.replace(":", "");
 

@@ -8,6 +8,7 @@ resume.get("/", ctrl.resumeRoot);
 // education
 resume.get("/education/:userId", ctrl.educationUser);
 resume.post("/education/create", ctrl.educationCreate);
+resume.post("/education/delete", ctrl.educationDelete);
 
 // experience
 resume.get("/experience/:userId", ctrl.experienceUser);
