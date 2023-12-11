@@ -10,6 +10,7 @@ resume.get("/education/:userId", ctrl.educationUser);
 resume.post("/education/create", ctrl.educationCreate);
 
 // experience
+resume.get("/experience/:userId", ctrl.experienceUser);
 resume.post("/experience/create", ctrl.experienceCreate);
 
 module.exports = resume;

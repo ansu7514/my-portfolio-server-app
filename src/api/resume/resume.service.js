@@ -49,6 +49,21 @@ exports.educationCreate = async (insertData) => {
   }
 };
 
+exports.experienceUser = async (userId) => {
+  const user_id = userId.replace(":", "");
+
+  const sql = `
+    SELECT *
+    FROM resume_experience
+    WHERE user_id = '${user_id}'
+    ORDER BY experience_from DESC
+  `;
+  console.log(sql);
+
+  const data = await run(sql);
+  return data;
+};
+
 exports.experienceCreate = async (insertData) => {
   const keys = Object.keys(insertData);
 
