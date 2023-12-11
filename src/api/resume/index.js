@@ -4,8 +4,12 @@ const ctrl = require("./resume.controller");
 const resume = Router();
 
 resume.get("/", ctrl.resumeRoot);
-resume.get("/education/:userId", ctrl.educationUser);
 
+// education
+resume.get("/education/:userId", ctrl.educationUser);
 resume.post("/education/create", ctrl.educationCreate);
+
+// experience
+resume.post("/experience/create", ctrl.experienceCreate);
 
 module.exports = resume;

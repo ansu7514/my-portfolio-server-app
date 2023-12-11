@@ -17,7 +17,7 @@ exports.school = async (req, res) => {
     console.log(data);
 
     res.status(200);
-    res.send({ sucess: true, data });
+    res.send({ success: true, data });
   } else {
     res.status(500).send("Interval Server Error");
   }

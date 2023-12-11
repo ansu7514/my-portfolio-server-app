@@ -18,8 +18,8 @@ exports.educationUser = async (userId) => {
 exports.educationCreate = async (insertData) => {
   const keys = Object.keys(insertData);
 
-  let columns = '';
-  let values = '';
+  let columns = "";
+  let values = "";
 
   keys.map((key, idx) => {
     if (idx !== keys.length - 1) {
@@ -33,6 +33,40 @@ exports.educationCreate = async (insertData) => {
 
   const sql = `
     INSERT INTO resume_education (
+      ${columns}
+    ) VALUES (
+      ${values}
+    )
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
+    console.error(e);
+    return e;
+  }
+};
+
+exports.experienceCreate = async (insertData) => {
+  const keys = Object.keys(insertData);
+
+  let columns = "";
+  let values = "";
+
+  keys.map((key, idx) => {
+    if (idx !== keys.length - 1) {
+      columns += `${key}, `;
+      values += `'${insertData[key]}', `;
+    } else {
+      columns += `${key}`;
+      values += `'${insertData[key]}'`;
+    }
+  });
+
+  const sql = `
+    INSERT INTO resume_experience (
       ${columns}
     ) VALUES (
       ${values}
