@@ -13,5 +13,6 @@ resume.post("/education/delete", ctrl.educationDelete);
 // experience
 resume.get("/experience/:userId", ctrl.experienceUser);
 resume.post("/experience/create", ctrl.experienceCreate);
+resume.post("/experience/delete", ctrl.experienceDelete);
 
 module.exports = resume;

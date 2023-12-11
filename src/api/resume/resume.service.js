@@ -114,3 +114,21 @@ exports.experienceCreate = async (insertData) => {
     return e;
   }
 };
+
+exports.experienceDelete = async ({ user_id, experience_id }) => {
+  const sql = `
+    DELETE
+    FROM resume_experience
+    WHERE user_id = '${user_id}' AND experience_id = ${experience_id}
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
+
+    console.error(e);
+    return e;
+  }
+};
