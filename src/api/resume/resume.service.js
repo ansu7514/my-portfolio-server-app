@@ -21,7 +21,7 @@ exports.educationCreate = async (insertData) => {
   let columns = "";
   let values = "";
 
-  keys.map((key, idx) => {
+  keys.forEach((key, idx) => {
     if (idx !== keys.length - 1) {
       columns += `${key}, `;
       values += `'${insertData[key]}', `;
@@ -87,7 +87,7 @@ exports.experienceCreate = async (insertData) => {
   let columns = "";
   let values = "";
 
-  keys.map((key, idx) => {
+  keys.forEach((key, idx) => {
     if (idx !== keys.length - 1) {
       columns += `${key}, `;
       values += `'${insertData[key]}', `;
@@ -128,6 +128,34 @@ exports.experienceDelete = async ({ user_id, experience_id }) => {
     return true;
   } catch (e) {
 
+    console.error(e);
+    return e;
+  }
+};
+
+exports.skillCreate = async (insertData) => {
+  const { user_id, skill_name, skill_percente } = insertData;
+
+  let values = '';
+  skill_name.map((name, idx) => {
+    if (idx !== skill_name.length - 1) values += `('${user_id}', '${name}', ${skill_percente[idx]}), `;
+    else values += `('${user_id}', '${name}', ${skill_percente[idx]})`;
+  });
+
+  const sql = `
+    INSERT INTO resume_coding_skill (
+      user_id, skill_name, skill_percente
+    ) VALUES
+      ${values}
+    ON DUPLICATE KEY UPDATE
+      skill_percente = VALUES(skill_percente);
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
     console.error(e);
     return e;
   }
