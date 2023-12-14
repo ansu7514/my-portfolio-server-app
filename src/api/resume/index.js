@@ -16,6 +16,7 @@ resume.post("/experience/create", ctrl.experienceCreate);
 resume.post("/experience/delete", ctrl.experienceDelete);
 
 // coding skill
+resume.get("/skill/:userId", ctrl.skillUser);
 resume.post("/skill/create", ctrl.skillCreate);
 
 module.exports = resume;

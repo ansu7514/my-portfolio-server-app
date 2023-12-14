@@ -118,6 +118,25 @@ exports.experienceDelete = async (req, res) => {
   res.send({ success, data });
 };
 
+exports.skillUser = async (req, res) => {
+  let success = false;
+  let data;
+
+  try {
+    data = await resumeService.skillUser(req.params.userId);
+    success = true;
+
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+    data = error;
+
+    res.status(500).send("Interval Server Error");
+  }
+
+  res.send({ success, data });
+};
+
 exports.skillCreate = async (req, res) => {
   let success = false;
   let data;
