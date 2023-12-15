@@ -162,7 +162,41 @@ exports.skillCreate = async (insertData) => {
     ) VALUES
       ${values}
     ON DUPLICATE KEY UPDATE
-      skill_percent = VALUES(skill_percent);
+      skill_percent = VALUES(skill_percent)
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
+    console.error(e);
+    return e;
+  }
+};
+
+exports.certificateCreate = async (insertData) => {
+  const keys = Object.keys(insertData);
+
+  let columns = "";
+  let values = "";
+
+  keys.forEach((key, idx) => {
+    if (idx !== keys.length - 1) {
+      columns += `${key}, `;
+      values += `'${insertData[key]}', `;
+    } else {
+      columns += `${key}`;
+      values += `'${insertData[key]}'`;
+    }
+  });
+
+  const sql = `
+    INSERT INTO resume_certificate (
+      ${columns}
+    ) VALUES (
+      ${values}
+    )
   `;
   console.log(sql);
 

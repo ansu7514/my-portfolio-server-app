@@ -19,4 +19,7 @@ resume.post("/experience/delete", ctrl.experienceDelete);
 resume.get("/skill/:userId", ctrl.skillUser);
 resume.post("/skill/create", ctrl.skillCreate);
 
+// certificate
+resume.post("/certificate/create", ctrl.certificateCreate);
+
 module.exports = resume;
