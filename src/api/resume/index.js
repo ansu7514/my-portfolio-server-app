@@ -20,6 +20,7 @@ resume.get("/skill/:userId", ctrl.skillUser);
 resume.post("/skill/create", ctrl.skillCreate);
 
 // certificate
+resume.get("/certificate/:userId", ctrl.certificateUser);
 resume.post("/certificate/create", ctrl.certificateCreate);
 
 module.exports = resume;

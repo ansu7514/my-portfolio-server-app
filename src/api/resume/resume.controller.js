@@ -156,6 +156,25 @@ exports.skillCreate = async (req, res) => {
   res.send({ success, data });
 };
 
+exports.certificateUser = async (req, res) => {
+  let success = false;
+  let data;
+
+  try {
+    data = await resumeService.certificateUser(req.params.userId);
+    success = true;
+
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+    data = error;
+
+    res.status(500).send("Interval Server Error");
+  }
+
+  res.send({ success, data });
+};
+
 exports.certificateCreate = async (req, res) => {
   let success = false;
   let data;

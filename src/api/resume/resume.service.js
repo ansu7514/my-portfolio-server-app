@@ -175,6 +175,21 @@ exports.skillCreate = async (insertData) => {
   }
 };
 
+exports.certificateUser = async (userId) => {
+  const user_id = userId.replace(":", "");
+
+  const sql = `
+    SELECT *
+    FROM resume_certificate
+    WHERE user_id = '${user_id}'
+    ORDER BY date DESC
+  `;
+  console.log(sql);
+
+  const data = await run(sql);
+  return data;
+};
+
 exports.certificateCreate = async (insertData) => {
   const keys = Object.keys(insertData);
 
