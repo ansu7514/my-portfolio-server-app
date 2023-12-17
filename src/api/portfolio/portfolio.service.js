@@ -77,3 +77,20 @@ exports.update = async (req) => {
     return e;
   }
 };
+
+exports.delete = async ({ user_id, portfolio_id }) => {
+  const sql = `
+		DELETE
+		FROM portfolio
+		WHERE user_id = '${user_id}' AND portfolio_id = ${portfolio_id}
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
+    console.error(e);
+    return e;
+  }
+};

@@ -9,5 +9,6 @@ portfolio.get("/:userId", ctrl.user);
 
 portfolio.post("/create", fileCtrl.uploadController, ctrl.create);
 portfolio.post("/update", fileCtrl.uploadController, ctrl.update);
+portfolio.post("/delete", ctrl.delete);
 
 module.exports = portfolio;
