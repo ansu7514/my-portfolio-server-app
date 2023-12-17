@@ -47,3 +47,33 @@ exports.create = async (req) => {
     return e;
   }
 };
+
+exports.update = async (req) => {
+  const { body, file } = req;
+
+  const { user_id, portfolio_id, title, content } = body;
+
+  let value = "";
+  if (file) {
+    const { originalname, path } = file;
+    value = `, image = '${originalname}', image_path = '${path}'`;
+  }
+
+  const sql = `
+    UPDATE portfolio
+    SET
+      title = '${title}', content = '${content}'
+      ${value}
+    WHERE
+    	user_id = '${user_id}' AND portfolio_id = ${portfolio_id}
+  `;
+  console.log(sql);
+
+  try {
+    await run(sql);
+    return true;
+  } catch (e) {
+    console.error(e);
+    return e;
+  }
+};
