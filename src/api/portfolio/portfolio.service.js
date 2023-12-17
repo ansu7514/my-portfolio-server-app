@@ -1,5 +1,19 @@
 const { run } = require("../../util/mySqlUtil");
 
+exports.user = async (userId) => {
+  const user_id = userId.replace(":", "");
+
+  const sql = `
+      SELECT *
+      FROM portfolio
+      WHERE user_id = '${user_id}'
+    `;
+  console.log(sql);
+
+  const data = await run(sql);
+  return data;
+};
+
 exports.create = async (req) => {
   const { body, file } = req;
 
